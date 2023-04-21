@@ -13,6 +13,10 @@ export const SignUpForms = styled.form`
         text-align: center;
     }
 
+    @media (max-width: 880px) {
+      width: 95vw;
+    }
+
 `
 
 export const SignUpButton = styled.button`
@@ -40,6 +44,11 @@ export const SignUpInfo = styled.div`
     p{
         font-weight: lighter;
         padding-bottom: 1.5rem;
+    }
+
+    @media (max-width: 880px) {
+      margin: 0 auto;
+      width: 95vw;
     }
 `
 

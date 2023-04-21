@@ -8,6 +8,10 @@ export const StyledSection = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 880px) {
+      display: none;
+    }
 `
 export const Blur= styled.div`
 
@@ -19,6 +23,10 @@ export const Blur= styled.div`
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.18);
+
+    @media (max-width: 880px) {
+      display: none;
+    }
 `
 const bgAnimation1 = keyframes`
   from {
@@ -59,4 +67,8 @@ export const Circle = styled.div`
     }
   }};
     border-radius: 50%;
+
+    @media (max-width: 880px) {
+      display: none;
+    }
 `
