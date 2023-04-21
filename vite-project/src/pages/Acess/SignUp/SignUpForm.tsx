@@ -2,6 +2,7 @@ import {DeepMap, FieldError, FieldValues, UseFormRegister} from "react-hook-form
 import {SignUpButton, SignUpForms} from "./styles"
 import { Input } from "../../../components/Input";
 import { FaPhone, FaLock, FaUser, FaMailBulk } from 'react-icons/fa';
+import { Link } from "react-router-dom";
 
 
 interface SignUpData {
@@ -35,7 +36,7 @@ const SignUpForm = ({handleSignUp, errors, register, loading}: SignUpFormProps) 
 
       <SignUpButton type="submit">Cadastrar</SignUpButton>
 
-      <p>Já tem uma conta? Faça Login</p>
+      <p>Já tem uma conta? <Link to="/">Faça login</Link></p>
 
     </SignUpForms>
 )
