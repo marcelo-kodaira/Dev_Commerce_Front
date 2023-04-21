@@ -19,12 +19,12 @@ export const SignUpForms = styled.form`
 
 `
 
-export const SignUpButton = styled.button`
+export const SignInButton = styled.button`
     display: block;
     margin: 1rem auto;
     width: 85%;
     height: 45px;
-    background-color: tomato;
+    background-color: dodgerblue;
     color: white;
     font-weight: bolder;
     font-size: 1.1rem;
@@ -33,8 +33,6 @@ export const SignUpButton = styled.button`
     border-radius: 5px;
     outline: none;
 `
-
-
 
 export const SignUpInfo = styled.div`
     width: 55vw;
