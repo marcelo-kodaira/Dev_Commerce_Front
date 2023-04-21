@@ -1,9 +1,12 @@
 import './App.css'
+import SignUp from './pages/Acess/SignUp'
+
 
 function App() {
 
   return (
     <div>
+      <SignUp/>
     </div>
   )
 }
