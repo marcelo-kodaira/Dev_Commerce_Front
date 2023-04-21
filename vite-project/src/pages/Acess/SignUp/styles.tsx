@@ -5,7 +5,7 @@ export const SignUpForms = styled.form`
     color: black;
 
     div{
-        margin: 5px auto;
+        margin: 10px auto;
 
     }
 
@@ -36,6 +36,11 @@ export const SignUpInfo = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    p{
+        font-weight: lighter;
+        padding-bottom: 1.5rem;
+    }
 `
 
 export const StyledAcess = styled.div`

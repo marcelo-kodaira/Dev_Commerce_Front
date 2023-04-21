@@ -1,11 +1,12 @@
 import { useState, useEffect, useCallback, ForwardRefRenderFunction, forwardRef, useRef } from "react";
 import { FieldError } from "react-hook-form";
 import { IconType } from "react-icons";
-import { StyledInput } from "./styles";
+import { IconDiv, StyledInput } from "./styles";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement>{
     name: string,
     label?: string,
+    signUp?: boolean,
     error?: FieldError | null,
     icon?: IconType
 }
@@ -18,11 +19,12 @@ type inputVariationOptions = {
 const InputVariation:inputVariationOptions = {
     default: 'rgb(128, 128, 128)',
     error: 'rgb(255, 0, 0)',
-    focus: 'rgb(128, 0, 128)',
+    focusSignUp: 'orange',
+    focusSignIn: 'blue',
     filled: 'rgb(0, 128, 0)'
 }
 
-export const InputBase: ForwardRefRenderFunction<HTMLInputElement , InputProps> = ({name,error = null,icon: Icon,label,...rest},ref) =>{
+export const InputBase: ForwardRefRenderFunction<HTMLInputElement , InputProps> = ({signUp,name,error = null,icon: Icon,label,...rest},ref) =>{
 
     const [variation, setVariation] = useState('default')
     const [value, setValue] = useState('')
@@ -34,8 +36,10 @@ export const InputBase: ForwardRefRenderFunction<HTMLInputElement , InputProps> 
     },[error])
 
     const handleInputFocus = useCallback(() =>{
-        if(!error){
-            setVariation('focus')
+        if(!error  && signUp){
+            setVariation('focusSignUp')
+        }else if(!error  && !signUp){
+          setVariation('focusSignIn')
         }
     },[error])
 
@@ -56,9 +60,9 @@ export const InputBase: ForwardRefRenderFunction<HTMLInputElement , InputProps> 
     
           <div style={{  position: 'relative' }}>
             {Icon && (
-              <div >
-                <Icon style={{ position: 'absolute', left: 5, top: '35%' }}/>
-              </div>
+              <IconDiv color={InputVariation[variation]}>
+                <Icon style={{ position: 'absolute', left: 5, top: '35%'}}/>
+              </IconDiv>
             )}
             <StyledInput
                 id={name}

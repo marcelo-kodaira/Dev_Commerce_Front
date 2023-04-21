@@ -23,18 +23,20 @@ const SignUpForm = ({handleSignUp, errors, register, loading}: SignUpFormProps) 
     <SignUpForms onSubmit={handleSignUp}>
 
       <div>
-      <Input label="Nome"  type="tel" icon={FaUser} placeholder="Digite seu telefone" error={errors.name} {...register("name")}/>
+      <Input label="Nome"  type="tel" signUp={true} icon={FaUser} placeholder="Digite seu telefone" error={errors.name} {...register("name")}/>
 
-      <Input label="Email"  type="tel" icon={FaMailBulk} placeholder="Digite seu email" error={errors.email} {...register("email")}/>
+      <Input label="Email"  type="tel" signUp={true} icon={FaMailBulk} placeholder="Digite seu email" error={errors.email} {...register("email")}/>
 
-      <Input label="Senha"  type="password" icon={FaLock} placeholder="Digite sua senha" error={errors.password} {...register("password")}/>
+      <Input label="Senha"  type="password" signUp={true} icon={FaLock} placeholder="Digite sua senha" error={errors.password} {...register("password")}/>
 
-      <Input label="Confirme sua senha"  type="password" icon={FaLock} placeholder="Confirme sua senha" error={errors.confirmPassword} {...register("confirmPassword")}/>
+      <Input label="Confirme sua senha"  type="password" signUp={true} icon={FaLock} placeholder="Confirme sua senha" error={errors.confirmPassword} {...register("confirmPassword")}/>
       </div>
 
 
       <SignUpButton type="submit">Cadastrar</SignUpButton>
+
       <p>Já tem uma conta? Faça Login</p>
+
     </SignUpForms>
 )
 

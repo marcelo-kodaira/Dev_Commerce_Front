@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
-interface InputProps {
-    color: string;
-  }
 
-export const StyledInput = styled.input<InputProps>`
+
+export const IconDiv = styled.div`
+    color: ${props => props.color};
+`
+
+export const StyledInput = styled.input`
+    border: 1px solid black;
+    font-weight: lighter;
+    outline: none;
     width: 90%;
     height: 45px;
     padding-left: 1.4rem;

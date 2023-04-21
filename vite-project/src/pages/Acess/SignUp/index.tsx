@@ -51,7 +51,7 @@ const SignUp = () =>{
         <StyledAcess>
             <SignUpInfo>
                 <h1>Faça parte da nossa comunidade!</h1>
-                <p>Insira suas informações e crie a sua conta</p>
+                <p>Insira suas informações e crie a sua conta agora mesmo!</p>
                 <SignUpForm errors={errors} handleSignUp={handleSubmit(handleSingUp)} loading={loading} register={register}/>
             </SignUpInfo>
 
