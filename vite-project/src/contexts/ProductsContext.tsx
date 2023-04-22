@@ -8,8 +8,8 @@ interface ProductProviderProps{
 
 interface ProductRequest{
     name: string
-    price: string
-    description: number
+    price: number
+    description: string
 }
 
 interface ProductResponse extends ProductRequest{
@@ -18,19 +18,19 @@ interface ProductResponse extends ProductRequest{
 
 interface ProductPatch{
     name?: string,
-    price?: string,
+    price?: number,
     description?: string
 }
 
 type CreateProductResponse = { error?: string };
 
-
 interface ProductContextData{
     products: ProductResponse[]
     notFound: boolean
-    ProductNotFound: string
+    productNotFound: string
     createProduct: (data:ProductRequest, token: string) => Promise<CreateProductResponse | void>
     loadProducts: (token: string) => Promise<void>
+    loadMyProducts: (token:string) => Promise<void>
     deleteProduct: (ProductId:string ,token: string) => Promise<void>
     updateProduct: (data:ProductPatch, ProductId: string, token:string) => Promise<void>
     searchProduct: (nome: string, token: string) => Promise<void>
@@ -50,7 +50,7 @@ const useProducts = () =>{
 const ProductProvider = ({children}:ProductProviderProps) =>{
     const [products, setProducts] = useState<ProductResponse[]>([])
     const [notFound, setNotFound] = useState(false)
-    const [ProductNotFound, setProductNotFound] = useState("")
+    const [productNotFound, setProductNotFound] = useState("")
 
     const loadProducts = useCallback(async (token:string) =>{
         try{
@@ -60,9 +60,23 @@ const ProductProvider = ({children}:ProductProviderProps) =>{
                     Authorization: `Bearer ${token}`
                 }
             },)
-            setProducts(response.data.data)
+            setProducts(response.data)
         }catch(err){
-            console.log(err)
+            
+        }
+    },[])
+
+    const loadMyProducts = useCallback(async (token:string) =>{
+        try{
+            const response = await api.get('/products/user',{
+                
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            },)
+            setProducts(response.data)
+        }catch(err){
+            
         }
     },[])
 
@@ -94,7 +108,7 @@ const ProductProvider = ({children}:ProductProviderProps) =>{
     },[products])
 
     const updateProduct = useCallback(async(data: ProductPatch, productId: string, token: string) =>{
-       await api.patch(`products/${productId}`,data,{
+       await api.patch(`products/id/${productId}`,data,{
             headers:{
                 Authorization: `Bearer ${token}`
             }
@@ -117,7 +131,7 @@ const ProductProvider = ({children}:ProductProviderProps) =>{
             headers:{
                 Authorization: `Bearer ${token}`}
             }).then(res => {
-                const itens = res.data.data
+                const itens = res.data
                 const filteredItens = itens.filter((product:ProductResponse) =>{
                     const regex = new RegExp(nome, 'i');
                     return regex.test(product.name);
@@ -142,9 +156,10 @@ const ProductProvider = ({children}:ProductProviderProps) =>{
         <ProductContext.Provider value={{
             products,
             notFound,
-            ProductNotFound,
+            productNotFound,
             createProduct,
             loadProducts,
+            loadMyProducts,
             deleteProduct,
             updateProduct,
             searchProduct
