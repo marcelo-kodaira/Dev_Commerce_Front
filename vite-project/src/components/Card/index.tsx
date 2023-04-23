@@ -1,5 +1,5 @@
 import { useAuth } from "../../contexts/AuthContext"
-import {CardContent, CardDescription, CardPrice, CardTitle, EditButton, StyledCard } from "./styles"
+import {CardContent, CardDescription, CardPrice, CardTitle, DetailsButton, StyledCard } from "./styles"
 import { useProducts } from "../../contexts/ProductsContext"
 
 
@@ -23,9 +23,9 @@ const Card = ({product}:CardProps) =>{
         <StyledCard>
             <CardContent>
                 <CardTitle>{product.name}</CardTitle>
-                <CardPrice>R${product.price}</CardPrice>
+                <CardPrice>R${product.price.toFixed(2)}</CardPrice>
                 <CardDescription>Descrição: {product.description}</CardDescription>
-                <EditButton>Detalhes</EditButton>
+                <DetailsButton>Detalhes</DetailsButton>
             </CardContent>
         </StyledCard>
     )

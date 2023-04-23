@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from '../../components/Header'
-import ProductEdit from '../../components/ProductEdit'
-import { MyProductsContainer } from './styles'
+import { MyProductsContainer, TitleContainer } from './styles'
 import { useAuth } from '../../contexts/AuthContext'
 import { useProducts } from '../../contexts/ProductsContext'
 import MyProductsList from './MyProductsList'
+import MyFirstProduct from './MyFirstProduct'
+import ModalCreateProduct from '../../components/Modal/ModalCreateProduct'
 
 interface Product{
   id: string,
@@ -13,27 +14,39 @@ interface Product{
   description: string,
 }
 
-
 const MyProducts = () => {
-
 
   const [loading,setLoading] = useState(true)
   const {token} = useAuth()
-  const {products, loadMyProducts, notFound, productNotFound} = useProducts()
+  const {products, loadMyProducts} = useProducts()
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const[selectedProduct, setSelectedProduct] = useState<Product>({} as Product)
 
 
   useEffect(() =>{
       loadMyProducts(token)
-      .then(res => setLoading(false))
+      .then(_ => setLoading(false))
   },[])
 
   return (
     <div>
+        <ModalCreateProduct open={open} handleClose={handleClose} />
+
         <Header/>
         <MyProductsContainer>
+        <TitleContainer>
+          <h1>Meus produtos</h1>
+          <button onClick={() => handleOpen()}>Adicionar Produto</button>
+        </TitleContainer> 
+        {
+          !products.length && !loading ?
+          <MyFirstProduct/>
+          :   
           <MyProductsList loading={loading} products={products}/>
+        }
         </MyProductsContainer>
     </div>
   )

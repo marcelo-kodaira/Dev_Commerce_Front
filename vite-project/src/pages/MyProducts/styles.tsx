@@ -8,3 +8,23 @@ export const MyProductsContainer = styled.main`
     gap: 35px;
 
 `
+
+export const TitleContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button{
+        width: 150px;
+        height: 50px;
+        background-color: dodgerblue;
+        color: white;
+        border: unset;
+        border-radius: 5px;
+        cursor: pointer;
+
+        &:hover{
+            filter: brightness(1.2)
+        }
+    }
+`

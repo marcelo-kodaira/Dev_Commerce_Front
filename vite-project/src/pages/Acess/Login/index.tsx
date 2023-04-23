@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom"
 import Illustration from '../Illustration/Illustration'
 import { SignUpInfo, StyledAcess } from './styles'
 import { useAuth } from '../../../contexts/AuthContext'
-import { loginSchema } from '../Schemas/Login.schema'
+import { loginSchema } from '../../../Schemas/Login.schema'
 import SignInForm from './LoginForm'
 
 

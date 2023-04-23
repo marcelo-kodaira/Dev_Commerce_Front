@@ -1,6 +1,12 @@
 import { Skeleton } from "@mui/material"
 import ProductEdit from "../../../components/ProductEdit"
 
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+
 interface Product{
     id: string,
     name: string,
@@ -15,14 +21,15 @@ interface ContactListProps{
 
 const howMany = Array.from(Array(7).keys())
 
-const MyProductsList = ({loading,products}:ContactListProps) =>(
+const MyProductsList = ({loading,products}:ContactListProps) =>{
+
+    return(
     <>
                 <>
-                <h1>Meus Produtos</h1>
                 {
                     loading? (
                     howMany.map((num) =>(
-                        <Skeleton key={num} variant="rectangular" width={500} height={30}>
+                        <Skeleton key={num} variant="rectangular" width={'100%'} height={30}>
                             
                         </Skeleton>
                     ))
@@ -31,6 +38,7 @@ const MyProductsList = ({loading,products}:ContactListProps) =>(
                 }
                 </>
     </>
-)
+    )
+}
 
 export default MyProductsList

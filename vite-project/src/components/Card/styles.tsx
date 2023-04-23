@@ -33,7 +33,7 @@ export const CardTitle = styled.div`
 export const CardPrice = styled.div`
     color: white;
     font-weight: 800;
-    font-size: 50px;
+    font-size: 35px;
     text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.42);
 `
 
@@ -50,7 +50,7 @@ export const CardDescription = styled.div`
     box-orient: vertical;
 `
 
-export const EditButton = styled.button`
+export const DetailsButton = styled.button`
     padding: 0.75rem 1.5rem;
     cursor: pointer;
     -webkit-user-select: none;
@@ -65,6 +65,10 @@ export const EditButton = styled.button`
     background-color: rgb(33 150 243);
     border-radius: 0.5rem;
     text-shadow: 0px 4px 18px #2c3442;
+
+    &:hover{
+        filter: brightness(1.2);
+    }
 `
 
 

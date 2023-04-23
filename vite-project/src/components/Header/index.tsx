@@ -1,8 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { RiArrowDownSLine } from 'react-icons/ri';
-import { Container, DropdownAccount, DropdownButton, DropdownContainer, DropdownInfo, DropdownLogout,HeaderButtons, HeaderContainer, HeaderProfile, LinkHome, LinkMyProducts } from "./styles";
+import { Container, DropdownAccount, DropdownButton, DropdownContainer, DropdownInfo, DropdownLogout,HeaderButtons, HeaderContainer, HeaderProfile, LinkHome, LinkMyProducts, StyledAvatar, StyledLogo } from "./styles";
 import {useLocation } from "react-router-dom";
+import Logo from '../../assets/logo.png'
+
+
 
 const Header = () =>{
 
@@ -11,7 +14,6 @@ const Header = () =>{
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     const location = useLocation();
-    console.log(location.pathname)
 
   const handleClickOutside = useMemo(() => (event: MouseEvent) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -31,7 +33,7 @@ const Header = () =>{
     return(
         <HeaderContainer>
             <Container>
-                <p>Logo</p>
+                <StyledLogo src={Logo} alt="logo The Market"/>
                 <HeaderButtons>
                   {
                     location.pathname == '/home'?(
@@ -50,6 +52,8 @@ const Header = () =>{
             
             <DropdownContainer open={open} ref={dropdownRef}>
                 <DropdownAccount>
+
+                  <StyledAvatar size={40}/>
                   
                     <DropdownInfo>
                         <p>{user.name}</p>

@@ -21,26 +21,22 @@ export const ProductContainer = styled.div`
     div:nth-child(1){
         height: 100%;
         min-width: 50px;
-        flex: 0 1 80%;
+        flex: 0 1 84%;
         margin-left: 5px;
         line-height: 40px;
         border-right: 1px solid lightgray;
-
 
         p{
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            
         }
-
-
     }
 
     div:nth-child(2){
         height: 100%;
-        min-width: 50px;
-        flex: 0 1 10%;
+        min-width: 105px;
+        flex: 0 1 8%;
         margin-left: 5px;
         line-height: 40px;
         border-right: 1px solid lightgray;
@@ -55,7 +51,7 @@ export const ProductContainer = styled.div`
     div:nth-child(3){
         display: flex;
         min-width: 80px;
-        flex: 1 0 10%;
+        flex: 1 0 8%;
         justify-content: space-around;
 
         button{

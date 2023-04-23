@@ -1,9 +1,8 @@
 import { useState } from 'react'
-import { signUpSchema } from '../Schemas/SignUp.schema'
+import { signUpSchema } from '../../../Schemas/SignUp.schema'
 import { useForm, SubmitHandler } from "react-hook-form"
 import {yupResolver} from "@hookform/resolvers/yup"
 import api from '../../../services/api'
-import { useHistory } from "react-router-dom"
 import SignUpForm from './SignUpForm'
 import Illustration from '../Illustration/Illustration'
 import { SignUpInfo, StyledAcess } from './styles'
@@ -30,7 +29,7 @@ const SignUp = () =>{
 
 
 
-    const handleSingUp: SubmitHandler<SignUpData> = ({name,email,password,confirmPassword}:SignUpData) => {
+    const handleSingUp: SubmitHandler<SignUpData> = ({name,email,password}:SignUpData) => {
         setLoading(true)
         api.post("/users",{name,email,password})
         .then(res => {
@@ -45,7 +44,6 @@ const SignUp = () =>{
         })
     }
 
-    const history = useHistory()
 
     return(
         <StyledAcess>

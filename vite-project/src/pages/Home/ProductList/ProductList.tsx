@@ -1,8 +1,6 @@
 
 import { Skeleton } from "@mui/material"
 import Card from "../../../components/Card"
-import { ListContainer } from "../styles"
-
 
 interface Product{
     id: string,
@@ -24,7 +22,7 @@ const ProductList = ({loading,products}:ContactListProps) =>(
                 {
                     loading? (
                     howMany.map((num) =>(
-                        <Skeleton key={num} variant="rectangular" width={260} height={118}>
+                        <Skeleton key={num} variant="rectangular" width={260} height={300}>
                             
                         </Skeleton>
                     ))

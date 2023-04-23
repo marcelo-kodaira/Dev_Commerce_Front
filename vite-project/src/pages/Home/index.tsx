@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useAuth } from "../../contexts/AuthContext"
 import { useProducts } from "../../contexts/ProductsContext"
 import NotFound from "./ProductNotFound"
-import FirstProduct from "./FirstProduct"
+import FirstProduct from "./FirstProduct/FirstProduct"
 import ProductList from "./ProductList/ProductList"
 import Header from "../../components/Header"
 import SearchFilter from "../../components/Filter/SearchFilter"
@@ -31,22 +31,27 @@ const Home = () =>{
 
 
     if(notFound){
-        return <NotFound selectedProduct={selectedProduct} contactNotFound={productNotFound}/>
+        return <NotFound  productNotFound={productNotFound}/>
     }
 
     return(
         <>
         <Header/>
         <HomeContainer>
-            <SearchFilter/>
-            <ListContainer>
+            
+            
                 {
                 !products.length && !loading ?
                 <FirstProduct/>
-                :   
-                <ProductList products={products} loading={loading} />
+                :
+                <>
+                    <SearchFilter/>
+                    <ListContainer>    
+                        <ProductList products={products} loading={loading} />
+                    </ListContainer>
+                </>
                 }
-            </ListContainer>
+            
         </HomeContainer>
         </>
     )

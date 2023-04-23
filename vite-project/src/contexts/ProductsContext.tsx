@@ -108,7 +108,7 @@ const ProductProvider = ({children}:ProductProviderProps) =>{
     },[products])
 
     const updateProduct = useCallback(async(data: ProductPatch, productId: string, token: string) =>{
-       await api.patch(`products/id/${productId}`,data,{
+       await api.patch(`products/${productId}`,data,{
             headers:{
                 Authorization: `Bearer ${token}`
             }
@@ -120,7 +120,6 @@ const ProductProvider = ({children}:ProductProviderProps) =>{
             if(product){
                 Object.assign(product, res.data);
                 setProducts([...filteredProducts, product])
-                // setProducts([...filteredProducts, { ...Product, ...res.data }]);
             }
         })
         .catch(err => console.log(err))

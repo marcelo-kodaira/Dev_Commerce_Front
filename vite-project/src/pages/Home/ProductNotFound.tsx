@@ -2,20 +2,11 @@ import SearchFilter from "../../components/Filter/SearchFilter"
 import Header from "../../components/Header"
 import { HomeContainer } from "./styles"
 
-
-interface Product{
-    id: string,
-    name: string,
-    price: number,
-    description: string,
-}
-
 interface NotFoundProps{
-    selectedProduct: Product
-    contactNotFound: string
+    productNotFound: string
 }
 
-const NotFound = ({selectedProduct,contactNotFound}:NotFoundProps) =>{
+const NotFound = ({productNotFound}:NotFoundProps) =>{
 
     return(
         <>
@@ -24,7 +15,7 @@ const NotFound = ({selectedProduct,contactNotFound}:NotFoundProps) =>{
                 <SearchFilter/>
                 <section>
                         <h2>Infelizmente não conseguimos encontrar:</h2>
-                        <span>{contactNotFound}</span>
+                        <span>{productNotFound}</span>
                 </section>
             </HomeContainer>
         </>
