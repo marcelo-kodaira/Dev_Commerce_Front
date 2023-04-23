@@ -7,7 +7,6 @@ export const HomeContainer = styled.main`
 `
 
 export const ListContainer = styled.section`
-
     display: flex;
     gap: 5em;
     flex-wrap: wrap;
