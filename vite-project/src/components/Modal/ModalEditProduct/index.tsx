@@ -6,6 +6,8 @@ import { useProducts } from '../../../contexts/ProductsContext';
 import { Input } from '../../Input';
 import { ModalButton , InputContainer, ModalTitle, StyledForm} from '../ModalStyles';
 import { editProductSchema } from '../../../Schemas/editProduct.schema';
+import { toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Product {
     id: string,
@@ -32,18 +34,15 @@ const ModalEditProduct = ({open,handleClose,product}:ModalEditProductProps) => {
 
   
   const handleEditProduct = (data:Product) => {
-    if(!data.name){
-      data.name = product.name
+    if(data.name == product.name && data.description === product.description && data.price == product.price){
+      handleClose()
+      return
     }
-    if(!data.description){
-      data.description = product.description
-    }
-    if(!data.price){
-      data.price = product.price
-    }
+    
     updateProduct(data,product.id, token)
     .then(_ => {
       handleClose()
+      toast.success('Produto alterado!')
     })
   }
 

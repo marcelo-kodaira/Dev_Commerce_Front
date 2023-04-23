@@ -6,6 +6,8 @@ import { useAuth } from '../../../contexts/AuthContext';
 import { useProducts } from '../../../contexts/ProductsContext';
 import { Input } from '../../Input';
 import { ModalButton, InputContainer, ModalTitle, StyledForm } from '../ModalStyles';
+import { toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Product {
     id: String,
@@ -29,11 +31,14 @@ const ModalCreateProduct = ({open,handleClose}:ModalCreateProductProps) => {
   const {token} = useAuth()
   const {createProduct} = useProducts()
 
-  
+
   const handleCreateProduct = (data:Product) =>{
     createProduct(data,token)
-    .then(_ => handleClose())
-    .catch(err => console.log(err))
+    .then(_ => {
+      handleClose()
+      toast.success('Produto cadastrado!')
+    })
+    .catch(err => toast.error(err))
   }
 
   return (
@@ -53,8 +58,8 @@ const ModalCreateProduct = ({open,handleClose}:ModalCreateProductProps) => {
 
           <InputContainer id="modal-modal-description">
             <Input label='Nome' error={errors.name} {...register('name')} placeholder='Nome do produto' />
-            <Input label='Descrição' error={errors.description} {...register('description')} placeholder='Nome a descrição do produto' />
-            <Input type='string' label='Preço' error={errors.price} {...register('price')} placeholder='Nome o preço do produto' />
+            <Input label='Descrição' error={errors.description} {...register('description')} placeholder='Descrição do produto' />
+            <Input label='Preço' error={errors.price} {...register('price')} placeholder='Preço do produto' />
           </InputContainer>
 
           <ModalButton type='submit'>Adicionar produto</ModalButton>

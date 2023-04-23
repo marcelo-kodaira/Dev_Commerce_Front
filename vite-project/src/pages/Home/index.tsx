@@ -7,6 +7,7 @@ import ProductList from "./ProductList/ProductList"
 import Header from "../../components/Header"
 import SearchFilter from "../../components/Filter/SearchFilter"
 import { HomeContainer, ListContainer } from "./styles"
+import Filters from "./Filters"
 
 const Home = () =>{
     
@@ -24,16 +25,20 @@ const Home = () =>{
         return <NotFound  productNotFound={productNotFound}/>
     }
 
+    
+
     return(
         <>
         <Header/>
         <HomeContainer>
+        
                 {
                 !products.length && !loading ?
                 <FirstProduct/>
                 :
-                <>
+                <>  
                     <SearchFilter/>
+                    <Filters/>
                     <ListContainer>    
                         <ProductList products={products} loading={loading} />
                     </ListContainer>

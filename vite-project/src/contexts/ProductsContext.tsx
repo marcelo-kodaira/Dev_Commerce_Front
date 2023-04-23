@@ -22,6 +22,7 @@ interface ProductPatch{
     description?: string
 }
 
+
 type CreateProductResponse = { error?: string };
 
 interface ProductContextData{
@@ -34,6 +35,7 @@ interface ProductContextData{
     deleteProduct: (ProductId:string ,token: string) => Promise<void>
     updateProduct: (data:ProductPatch, ProductId: string, token:string) => Promise<void>
     searchProduct: (nome: string, token: string) => Promise<void>
+    sortProducts: (sortBy: string) => void
 }
 
 const ProductContext = createContext<ProductContextData>({} as ProductContextData)
@@ -151,6 +153,18 @@ const ProductProvider = ({children}:ProductProviderProps) =>{
             })
     },[products])
 
+    const sortProducts = useCallback((sortBy:string) => {
+        let sortedProducts = [...products];
+        if (sortBy === 'name') {
+          sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+        } else if (sortBy === 'lowestPrice') {
+          sortedProducts.sort((a, b) => a.price - b.price);
+        } else if (sortBy === 'highestPrice') {
+          sortedProducts.sort((a, b) => b.price - a.price);
+        }
+        setProducts(sortedProducts);
+      }, [products]);
+
     return(
         <ProductContext.Provider value={{
             products,
@@ -161,7 +175,8 @@ const ProductProvider = ({children}:ProductProviderProps) =>{
             loadMyProducts,
             deleteProduct,
             updateProduct,
-            searchProduct
+            searchProduct,
+            sortProducts
             }}>
             {children}
         </ProductContext.Provider>

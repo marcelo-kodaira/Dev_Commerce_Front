@@ -3,7 +3,8 @@ import { ProductContainer, ProductName } from './styles'
 import { useProducts } from '../../contexts/ProductsContext'
 import { useAuth } from '../../contexts/AuthContext'
 import { useState } from 'react'
-import ModalCreateContact from '../Modal/ModalCreateProduct'
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import ModalEditProduct from '../Modal/ModalEditProduct'
 
 interface Product{
@@ -27,6 +28,29 @@ const ProductEdit = ({product}:CardProps) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    const MySwal = withReactContent(Swal);
+
+    const handleDelete = () =>{
+        MySwal.fire({
+            title: 'Você tem certeza?',
+            text: "Essa ação é irreversível!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Deletar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              MySwal.fire(
+                'Deletado!',
+                'O seu produto foi deletado.',
+                'success'
+              )
+              deleteProduct(product.id,token)
+            }
+          })
+        }
+
     return (
         <section>
             <ModalEditProduct open={open} handleClose={handleClose} product={product} />
@@ -43,7 +67,7 @@ const ProductEdit = ({product}:CardProps) => {
 
                 <div>
                     <button onClick={() => handleOpen()}><FaEdit/></button>
-                    <button onClick={() => deleteProduct(product.id,token)}><FaTrash/></button>
+                    <button onClick={handleDelete}><FaTrash/></button>
                 </div>
             </ProductContainer>
         </section>
