@@ -8,6 +8,7 @@ import { ModalButton , InputContainer, ModalTitle, StyledForm} from '../ModalSty
 import { editProductSchema } from '../../../Schemas/editProduct.schema';
 import { toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {TbCurrencyReal} from "react-icons/tb"
 
 interface Product {
     id: string,
@@ -64,7 +65,7 @@ const ModalEditProduct = ({open,handleClose,product}:ModalEditProductProps) => {
           <InputContainer id="modal-modal-description">
             <Input label='Nome' error={errors.name} {...register('name')} defaultValue={product.name} />
             <Input label='Descrição' error={errors.description} {...register('description')} defaultValue={product.description} />
-            <Input type='string' label='Preço' error={errors.price} {...register('price')} defaultValue={product.price.toFixed(2)} />
+            <Input label='Preço' error={errors.price} icon={TbCurrencyReal} {...register('price')} defaultValue={product.price.toFixed(2)} />
           </InputContainer>
 
           <ModalButton type='submit'>Adicionar produto</ModalButton>

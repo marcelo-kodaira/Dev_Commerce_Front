@@ -45,9 +45,6 @@ export const CardDescription = styled.div`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    display: -webkit-box;
-    line-clamp: 4;
-    box-orient: vertical;
 `
 
 export const DetailsButton = styled.button`

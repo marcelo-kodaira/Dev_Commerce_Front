@@ -53,7 +53,7 @@ const ProductEdit = ({product}:CardProps) => {
 
     return (
         <section>
-            <ModalEditProduct open={open} handleClose={handleClose} product={product} />
+            <ModalEditProduct open={open} handleClose={handleClose}  product={product}/>
             <ProductName>{product.name}</ProductName>
             <ProductContainer>
 
@@ -62,7 +62,7 @@ const ProductEdit = ({product}:CardProps) => {
                 </div>
 
                 <div>
-                    <p>R$ {product.price.toFixed(2)}</p>
+                    <p>R$ {product.price.toFixed(2).replace(".",",")}</p>
                 </div>
 
                 <div>

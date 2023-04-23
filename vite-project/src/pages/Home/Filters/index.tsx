@@ -8,7 +8,7 @@ const Filters = () => {
 
   return (
     <>
-      <span>Ordernar:</span>
+      <span>Ordenar:</span>
       <StyledSelect onChange={(e) => sortProducts(e.target.value)}>
       <option>- - Escolha - -</option>
       <option value="name">Nome</option>

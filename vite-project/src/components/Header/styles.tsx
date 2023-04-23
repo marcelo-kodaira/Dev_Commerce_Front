@@ -54,7 +54,7 @@ export const LinkHome = styled(LinkMyProducts)`
   background: tomato;
 `
 
-export const HeaderProfile = styled.button<{ open: boolean }>`
+export const HeaderProfile = styled.button<{ openMenu: boolean }>`
     display: flex;
     align-items: center;
     padding: 5px;
@@ -67,12 +67,12 @@ export const HeaderProfile = styled.button<{ open: boolean }>`
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
 
-  ${({ open }) => open && `
+  ${({ openMenu }) => openMenu && `
     filter: brightness(.9);
   `}
 `;
 
-export const DropdownContainer = styled.nav<{ open: boolean }>`
+export const DropdownContainer = styled.nav<{ openMenu: boolean }>`
   position: absolute;
   top: 100%;
   right: 5%;
@@ -84,7 +84,7 @@ export const DropdownContainer = styled.nav<{ open: boolean }>`
   color: white;
   z-index: 1000;
   transition: max-height 0.8s ease-out;
-  ${({ open }) => open && `
+  ${({ openMenu }) => openMenu && `
     max-height: 300px;
   `}
 `;
@@ -147,5 +147,9 @@ export const DropdownLogout = styled.div`
 
     &:hover{
         filter: brightness(1.2);
+    }
+
+    p{
+      margin-right: 5px;
     }
 `

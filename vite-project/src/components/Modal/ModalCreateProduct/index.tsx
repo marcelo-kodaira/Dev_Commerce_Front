@@ -8,6 +8,7 @@ import { Input } from '../../Input';
 import { ModalButton, InputContainer, ModalTitle, StyledForm } from '../ModalStyles';
 import { toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {TbCurrencyReal} from "react-icons/tb"
 
 interface Product {
     id: String,
@@ -33,6 +34,7 @@ const ModalCreateProduct = ({open,handleClose}:ModalCreateProductProps) => {
 
 
   const handleCreateProduct = (data:Product) =>{
+
     createProduct(data,token)
     .then(_ => {
       handleClose()
@@ -42,7 +44,7 @@ const ModalCreateProduct = ({open,handleClose}:ModalCreateProductProps) => {
   }
 
   return (
-    <div>
+ 
       
       <Modal
         
@@ -59,14 +61,14 @@ const ModalCreateProduct = ({open,handleClose}:ModalCreateProductProps) => {
           <InputContainer id="modal-modal-description">
             <Input label='Nome' error={errors.name} {...register('name')} placeholder='Nome do produto' />
             <Input label='Descrição' error={errors.description} {...register('description')} placeholder='Descrição do produto' />
-            <Input label='Preço' error={errors.price} {...register('price')} placeholder='Preço do produto' />
+            <Input label='Preço' error={errors.price} {...register('price')} icon={TbCurrencyReal} placeholder='Preço do produto' />
           </InputContainer>
 
           <ModalButton type='submit'>Adicionar produto</ModalButton>
 
         </StyledForm>
       </Modal>
-    </div>
+
   );
 }
 

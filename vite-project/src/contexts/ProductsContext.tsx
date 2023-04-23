@@ -12,8 +12,17 @@ interface ProductRequest{
     description: string
 }
 
+interface User{
+    name: string;
+    email: string
+}
+
 interface ProductResponse extends ProductRequest{
     id: string
+}
+
+interface ProductIdResponse extends ProductResponse{
+    user: User
 }
 
 interface ProductPatch{
@@ -26,11 +35,13 @@ interface ProductPatch{
 type CreateProductResponse = { error?: string };
 
 interface ProductContextData{
+    product: ProductIdResponse | null
     products: ProductResponse[]
     notFound: boolean
     productNotFound: string
     createProduct: (data:ProductRequest, token: string) => Promise<CreateProductResponse | void>
     loadProducts: (token: string) => Promise<void>
+    loadProductId: (productId: string,token: string) => Promise<void>
     loadMyProducts: (token:string) => Promise<void>
     deleteProduct: (ProductId:string ,token: string) => Promise<void>
     updateProduct: (data:ProductPatch, ProductId: string, token:string) => Promise<void>
@@ -51,6 +62,7 @@ const useProducts = () =>{
 
 const ProductProvider = ({children}:ProductProviderProps) =>{
     const [products, setProducts] = useState<ProductResponse[]>([])
+    const [product, setProduct] = useState<ProductIdResponse | null>(null)
     const [notFound, setNotFound] = useState(false)
     const [productNotFound, setProductNotFound] = useState("")
 
@@ -65,6 +77,19 @@ const ProductProvider = ({children}:ProductProviderProps) =>{
             setProducts(response.data)
         }catch(err){
             
+        }
+    },[])
+
+    const loadProductId = useCallback(async (productId: string,token:string) =>{
+        try{
+            const response = await api.get(`/products/id/${productId}`,{
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            },)
+            setProduct(response.data)
+        }catch(err){
+            console.error(err)
         }
     },[])
 
@@ -166,11 +191,13 @@ const ProductProvider = ({children}:ProductProviderProps) =>{
 
     return(
         <ProductContext.Provider value={{
+            product,
             products,
             notFound,
             productNotFound,
             createProduct,
             loadProducts,
+            loadProductId,
             loadMyProducts,
             deleteProduct,
             updateProduct,

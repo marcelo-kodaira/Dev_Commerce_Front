@@ -17,6 +17,7 @@ const SearchFilter = () =>{
     const { searchProduct } = useProducts()
 
     const handleSearch = ({name}:SearchData) => {
+        
         searchProduct(name,token)
     }
 
