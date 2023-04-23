@@ -16,9 +16,6 @@ interface CardProps{
 
 const Card = ({product}:CardProps) =>{
     
-    const {token} = useAuth()
-    const{deleteProduct} = useProducts()
-    
     return(
         <StyledCard>
             <CardContent>

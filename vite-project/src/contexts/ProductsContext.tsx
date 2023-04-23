@@ -129,27 +129,26 @@ const ProductProvider = ({children}:ProductProviderProps) =>{
 
     const searchProduct = useCallback(async(nome: string, token: string) =>{
         api.get('/products',{
+            params:{
+                name: nome
+            },
             headers:{
                 Authorization: `Bearer ${token}`}
             }).then(res => {
-                const itens = res.data
-                const filteredItens = itens.filter((product:ProductResponse) =>{
-                    const regex = new RegExp(nome, 'i');
-                    return regex.test(product.name);
-                 })
+                const produtos = res.data
 
                 if(nome === ""){
-                    setProducts(itens)
+                    setProducts(produtos)
                     return setNotFound(false)
                 }
 
-                if(filteredItens.length === 0){
+                if(produtos.length === 0){
                     setProductNotFound(nome)
                     return setNotFound(true)
                 }
-                    setNotFound(false)
-                    setProducts(filteredItens)
-                
+
+                setNotFound(false)
+                setProducts(produtos)
             })
     },[products])
 
