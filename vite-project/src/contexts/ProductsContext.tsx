@@ -82,7 +82,7 @@ const ProductProvider = ({children}:ProductProviderProps) =>{
 
     const loadProductId = useCallback(async (productId: string,token:string) =>{
         try{
-            const response = await api.get(`/products/id/${productId}`,{
+            const response = await api.get(`/products/${productId}`,{
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
