@@ -48,10 +48,7 @@ const ModalEditProduct = ({open,handleClose,product}:ModalEditProductProps) => {
   }
 
   return (
-    <div>
-      
       <Modal
-        
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -72,7 +69,6 @@ const ModalEditProduct = ({open,handleClose,product}:ModalEditProductProps) => {
 
         </StyledForm>
       </Modal>
-    </div>
   );
 }
 

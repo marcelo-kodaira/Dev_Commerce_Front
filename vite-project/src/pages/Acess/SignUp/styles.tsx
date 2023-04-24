@@ -34,8 +34,6 @@ export const SignUpButton = styled.button`
     outline: none;
 `
 
-
-
 export const SignUpInfo = styled.div`
     width: 55vw;
     display: flex;

@@ -1,7 +1,5 @@
 import Modal from '@mui/material/Modal';
 import { StyledContainer, InfoTitle, InfoContainer, Price, AnnouncerInfo, ProductDescription } from './styles';
-import { useParams } from 'react-router-dom';
-
 
 interface SelectedProduct{
   name: string
@@ -13,45 +11,37 @@ interface SelectedProduct{
   }
 }
 
-
 interface ModalProductDetailsProps {
-    open: boolean;
-    handleClose: () => void;
-    product: SelectedProduct | null
+    open: boolean
+    handleClose: () => void
+    product: SelectedProduct
 }
 
 const ModalProductDetails = ({ open, handleClose, product}: ModalProductDetailsProps) =>{
     return (
-        <div>
       
         <Modal
-          
           open={open}
           onClose={handleClose}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
-
           <StyledContainer>
             <InfoTitle id="modal-modal-title">
-              {product?.name}
+              {product.name}
             </InfoTitle>
             <InfoContainer>
             <ProductDescription>
-              {product?.description}
+              {product.description}
             </ProductDescription>
             <AnnouncerInfo>
-            <p>Anunciante: {product?.user.name}</p>
-            <p>Contato: {product?.user.email}</p>
+            <p>Anunciante: {product.user.name}</p>
+            <p>Contato: {product.user.email}</p>
             </AnnouncerInfo>
-            <Price>R$ {product?.price.toFixed(2).replace(".",",")}</Price> 
+            <Price>R$ {product.price.toFixed(2).replace(".",",")}</Price> 
             </InfoContainer>
           </StyledContainer>
-
-
-           
         </Modal>
-      </div>
     )
 }
 

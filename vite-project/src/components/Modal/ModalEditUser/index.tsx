@@ -20,7 +20,6 @@ interface ModalEditUserProps {
     handleClose: () => void;
 }
 
-
 const ModalEditUser = ({open,handleClose}:ModalEditUserProps) => {
 
   const {formState:{errors}, register, handleSubmit} = useForm<User>({
@@ -31,11 +30,6 @@ const ModalEditUser = ({open,handleClose}:ModalEditUserProps) => {
 
   
   const handleEditProduct = (data:User) => {
-
-    if(data.name == user.name && data.email === user.email && data.password == ""){
-      handleClose()
-      return
-    }
 
     const {confirmPassword,...rest} = data
     
@@ -56,10 +50,8 @@ const ModalEditUser = ({open,handleClose}:ModalEditUserProps) => {
   }
 
   return (
-    <div>
-      
+
       <Modal
-        
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -86,7 +78,7 @@ const ModalEditUser = ({open,handleClose}:ModalEditUserProps) => {
 
         </StyledForm>
       </Modal>
-    </div>
+
   );
 }
 

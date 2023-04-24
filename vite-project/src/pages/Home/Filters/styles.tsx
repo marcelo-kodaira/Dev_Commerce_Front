@@ -20,7 +20,6 @@ export const StyledSelect = styled.select`
     appearance: none;
 
     option{
-
         min-height: 1.2em;
     }
 `

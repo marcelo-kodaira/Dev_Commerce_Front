@@ -65,10 +65,7 @@ const SignUp = () =>{
                 {erro && <StyledErro>{erro}</StyledErro>}
                 <SignUpForm errors={errors} handleSignUp={handleSubmit(handleSingUp)} loading={loading} register={register}/>
             </SignUpInfo>
-
-
                 <Illustration color='orange'/>
-
         </StyledAcess>
     )
 }

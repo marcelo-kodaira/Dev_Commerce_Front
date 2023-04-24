@@ -22,7 +22,6 @@ interface ModalCreateProductProps {
     handleClose: () => void;
 }
 
-
 const ModalCreateProduct = ({open,handleClose}:ModalCreateProductProps) => {
 
   const {formState:{errors}, register, handleSubmit} = useForm<Product>({
@@ -44,10 +43,8 @@ const ModalCreateProduct = ({open,handleClose}:ModalCreateProductProps) => {
   }
 
   return (
- 
-      
+
       <Modal
-        
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -64,7 +61,7 @@ const ModalCreateProduct = ({open,handleClose}:ModalCreateProductProps) => {
             <Input label='Preço' error={errors.price} {...register('price')} icon={TbCurrencyReal} placeholder='Preço do produto' />
           </InputContainer>
 
-          <ModalButton type='submit'>Adicionar produto</ModalButton>
+          <ModalButton type='submit'>Cadastrar produto</ModalButton>
 
         </StyledForm>
       </Modal>

@@ -7,7 +7,7 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement>{
     name: string,
     label?: string,
     signUp?: boolean,
-    error?: FieldError | null,
+    error?: FieldError,
     icon?: IconType
 }
 
@@ -53,7 +53,7 @@ export const InputBase: ForwardRefRenderFunction<HTMLInputElement , InputProps> 
 
         <div>
           {label && (
-            <label style={{ color: 'gray.400' }} htmlFor={name}>
+            <label style={{ color: 'lightgray' }} htmlFor={name}>
               {label}
             </label>
           )}

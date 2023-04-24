@@ -35,7 +35,7 @@ interface ProductPatch{
 type CreateProductResponse = { error?: string };
 
 interface ProductContextData{
-    product: ProductIdResponse | null
+    product: ProductIdResponse
     products: ProductResponse[]
     notFound: boolean
     productNotFound: string
@@ -62,7 +62,7 @@ const useProducts = () =>{
 
 const ProductProvider = ({children}:ProductProviderProps) =>{
     const [products, setProducts] = useState<ProductResponse[]>([])
-    const [product, setProduct] = useState<ProductIdResponse | null>(null)
+    const [product, setProduct] = useState<ProductIdResponse>({} as ProductIdResponse)
     const [notFound, setNotFound] = useState(false)
     const [productNotFound, setProductNotFound] = useState("")
 
@@ -161,7 +161,7 @@ const ProductProvider = ({children}:ProductProviderProps) =>{
                 Authorization: `Bearer ${token}`}
             }).then(res => {
                 const produtos = res.data
-
+                
                 if(nome === ""){
                     setProducts(produtos)
                     return setNotFound(false)
@@ -171,7 +171,6 @@ const ProductProvider = ({children}:ProductProviderProps) =>{
                     setProductNotFound(nome)
                     return setNotFound(true)
                 }
-
                 setNotFound(false)
                 setProducts(produtos)
             })

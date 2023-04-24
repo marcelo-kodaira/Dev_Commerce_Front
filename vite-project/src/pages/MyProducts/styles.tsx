@@ -6,7 +6,6 @@ export const MyProductsContainer = styled.main`
     display: flex;
     flex-direction: column;
     gap: 35px;
-
 `
 
 export const TitleContainer = styled.div`
