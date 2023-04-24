@@ -8,32 +8,45 @@ interface ProductProviderProps{
 
 interface ProductRequest{
     name: string
-    price: string
-    description: number
+    price: number
+    description: string
+}
+
+interface User{
+    name: string;
+    email: string
 }
 
 interface ProductResponse extends ProductRequest{
     id: string
 }
 
+interface ProductIdResponse extends ProductResponse{
+    user: User
+}
+
 interface ProductPatch{
     name?: string,
-    price?: string,
+    price?: number,
     description?: string
 }
 
+
 type CreateProductResponse = { error?: string };
 
-
 interface ProductContextData{
+    product: ProductIdResponse | null
     products: ProductResponse[]
     notFound: boolean
-    ProductNotFound: string
+    productNotFound: string
     createProduct: (data:ProductRequest, token: string) => Promise<CreateProductResponse | void>
     loadProducts: (token: string) => Promise<void>
+    loadProductId: (productId: string,token: string) => Promise<void>
+    loadMyProducts: (token:string) => Promise<void>
     deleteProduct: (ProductId:string ,token: string) => Promise<void>
     updateProduct: (data:ProductPatch, ProductId: string, token:string) => Promise<void>
     searchProduct: (nome: string, token: string) => Promise<void>
+    sortProducts: (sortBy: string) => void
 }
 
 const ProductContext = createContext<ProductContextData>({} as ProductContextData)
@@ -49,8 +62,9 @@ const useProducts = () =>{
 
 const ProductProvider = ({children}:ProductProviderProps) =>{
     const [products, setProducts] = useState<ProductResponse[]>([])
+    const [product, setProduct] = useState<ProductIdResponse | null>(null)
     const [notFound, setNotFound] = useState(false)
-    const [ProductNotFound, setProductNotFound] = useState("")
+    const [productNotFound, setProductNotFound] = useState("")
 
     const loadProducts = useCallback(async (token:string) =>{
         try{
@@ -60,9 +74,36 @@ const ProductProvider = ({children}:ProductProviderProps) =>{
                     Authorization: `Bearer ${token}`
                 }
             },)
-            setProducts(response.data.data)
+            setProducts(response.data)
         }catch(err){
-            console.log(err)
+            
+        }
+    },[])
+
+    const loadProductId = useCallback(async (productId: string,token:string) =>{
+        try{
+            const response = await api.get(`/products/id/${productId}`,{
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            },)
+            setProduct(response.data)
+        }catch(err){
+            console.error(err)
+        }
+    },[])
+
+    const loadMyProducts = useCallback(async (token:string) =>{
+        try{
+            const response = await api.get('/products/user',{
+                
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            },)
+            setProducts(response.data)
+        }catch(err){
+            
         }
     },[])
 
@@ -106,7 +147,6 @@ const ProductProvider = ({children}:ProductProviderProps) =>{
             if(product){
                 Object.assign(product, res.data);
                 setProducts([...filteredProducts, product])
-                // setProducts([...filteredProducts, { ...Product, ...res.data }]);
             }
         })
         .catch(err => console.log(err))
@@ -114,40 +154,55 @@ const ProductProvider = ({children}:ProductProviderProps) =>{
 
     const searchProduct = useCallback(async(nome: string, token: string) =>{
         api.get('/products',{
+            params:{
+                name: nome
+            },
             headers:{
                 Authorization: `Bearer ${token}`}
             }).then(res => {
-                const itens = res.data.data
-                const filteredItens = itens.filter((product:ProductResponse) =>{
-                    const regex = new RegExp(nome, 'i');
-                    return regex.test(product.name);
-                 })
+                const produtos = res.data
 
                 if(nome === ""){
-                    setProducts(itens)
+                    setProducts(produtos)
                     return setNotFound(false)
                 }
 
-                if(filteredItens.length === 0){
+                if(produtos.length === 0){
                     setProductNotFound(nome)
                     return setNotFound(true)
                 }
-                    setNotFound(false)
-                    setProducts(filteredItens)
-                
+
+                setNotFound(false)
+                setProducts(produtos)
             })
     },[products])
 
+    const sortProducts = useCallback((sortBy:string) => {
+        let sortedProducts = [...products];
+        if (sortBy === 'name') {
+          sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+        } else if (sortBy === 'lowestPrice') {
+          sortedProducts.sort((a, b) => a.price - b.price);
+        } else if (sortBy === 'highestPrice') {
+          sortedProducts.sort((a, b) => b.price - a.price);
+        }
+        setProducts(sortedProducts);
+      }, [products]);
+
     return(
         <ProductContext.Provider value={{
+            product,
             products,
             notFound,
-            ProductNotFound,
+            productNotFound,
             createProduct,
             loadProducts,
+            loadProductId,
+            loadMyProducts,
             deleteProduct,
             updateProduct,
-            searchProduct
+            searchProduct,
+            sortProducts
             }}>
             {children}
         </ProductContext.Provider>

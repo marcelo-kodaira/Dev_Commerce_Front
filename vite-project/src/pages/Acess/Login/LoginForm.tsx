@@ -3,6 +3,7 @@ import {SignInButton, SignUpForms} from "./styles"
 import { Input } from "../../../components/Input";
 import {FaLock, FaMailBulk } from 'react-icons/fa';
 import { Link } from "react-router-dom";
+import { SpinnerDotted } from "spinners-react";
 
 
 interface SignInData {
@@ -27,7 +28,7 @@ const SignInForm = ({handleSignIn, errors, register, loading}: SignUpFormProps) 
       <Input label="Senha"  type="password" signUp={false} icon={FaLock} placeholder="Digite sua senha" error={errors.password} {...register("password")}/>
       </div>
 
-      <SignInButton type="submit">Entrar</SignInButton>
+      <SignInButton type="submit">{loading? <SpinnerDotted color="white" size={"30px"}/> : 'Login'}</SignInButton>
 
       <p>Não tem uma conta? <Link to="/register">Crie sua conta</Link></p>
 

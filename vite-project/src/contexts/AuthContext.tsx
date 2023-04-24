@@ -9,11 +9,18 @@ interface User{
     id: string,
     name: string,
     email:string,
+    password: string
 }
 
 interface signInCredentials{
     email: string,
     password: string
+}
+
+interface UserPatch {
+    name?: string
+    email?: string
+    password?: string
 }
 
 interface AuthState {
@@ -26,6 +33,8 @@ interface AuthContextData {
     token: string,
     signIn: (credentials: signInCredentials) => Promise<void>
     signOut: ()=> void
+    updateUser: (data: UserPatch, userId: string, token:string) => Promise<void>
+    deleteUser: (userId:string, token:string) => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData)
@@ -74,11 +83,34 @@ const AuthProvider = ({children}: AuthProviderProps) =>{
         setData({} as AuthState)
     },[])
 
+    const updateUser = useCallback(async(data: UserPatch, userId: string, token: string) =>{
+        api.patch(`/users/${userId}`,data,{headers:{Authorization: `Bearer ${token}`}})
+            .then(res =>{ 
+                localStorage.setItem('@SXB:user', JSON.stringify(res.data))
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        },[]) 
+  
+  const deleteUser = useCallback(async(userId: string, token: string) =>{
+    api.delete(`/users/${userId}`,{headers:{Authorization: `Bearer ${token}`}})
+        .then(_ =>{ 
+            localStorage.removeItem('@SXB:token')
+            localStorage.removeItem('@SXB:user')
+        })
+        .catch(err => {
+        console.error(err)
+        })
+    },[]) 
+
 
     return(
         <AuthContext.Provider value={{
             signIn,
             signOut,
+            updateUser,
+            deleteUser,
             token: data.token,
             user: data.user
         }}>

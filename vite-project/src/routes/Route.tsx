@@ -18,7 +18,7 @@ export const Route = ({ isPrivate = false, component: Component, ...rest}: Props
          isPrivate === !!token ? (
             <Component/> 
           ): (
-            <Redirect to={isPrivate ? '/' : '/dashboard'} /> 
+            <Redirect to={isPrivate ? '/' : '/home'} /> 
           )
       }
       />

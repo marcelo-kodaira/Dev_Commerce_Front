@@ -24,7 +24,7 @@ export const SignInButton = styled.button`
     margin: 1rem auto;
     width: 85%;
     height: 45px;
-    background-color: dodgerblue;
+    background-color: ${props => props.theme.secondaryColor};
     color: white;
     font-weight: bolder;
     font-size: 1.1rem;
@@ -53,6 +53,9 @@ export const SignUpInfo = styled.div`
 `
 
 export const StyledAcess = styled.div`
-    display: flex;
-    
+    display: flex; 
+`
+
+export const StyledErro = styled.p`
+    color: red;
 `
