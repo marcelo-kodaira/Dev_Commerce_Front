@@ -17,7 +17,7 @@ export const TitleContainer = styled.div`
     button{
         width: 150px;
         height: 50px;
-        background-color: dodgerblue;
+        background-color: ${props => props.theme.secondaryColor};
         color: white;
         border: unset;
         border-radius: 5px;

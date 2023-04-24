@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import {yupResolver} from "@hookform/resolvers/yup"
 import { useHistory } from "react-router-dom"
 import Illustration from '../Illustration/Illustration'
-import { SignUpInfo, StyledAcess } from './styles'
+import { SignUpInfo, StyledAcess, StyledErro } from './styles'
 import { useAuth } from '../../../contexts/AuthContext'
 import { loginSchema } from '../../../Schemas/Login.schema'
 import SignInForm from './LoginForm'
@@ -17,6 +17,7 @@ interface SignInData {
 const Login = () =>{
 
     const [loading, setLoading] = useState(false)
+    const [erro, setErro] = useState("")
     const {signIn} = useAuth()
 
     const {
@@ -33,6 +34,7 @@ const Login = () =>{
         signIn(data)
         .then(() => setLoading(false) )
         .catch(err => {
+            setErro(err.response.data.message)
             setLoading(false)
         })
     }
@@ -42,6 +44,7 @@ const Login = () =>{
             <SignUpInfo>
                 <h1>Seja bem vindo de volta!</h1>
                 <p>Bem vindo! Insira suas informações para prosseguir</p>
+                {erro && <StyledErro>{erro}</StyledErro>}
                 <SignInForm errors={errors} handleSignIn={handleSubmit(handleSignIn)} loading={loading} register={register}/>
             </SignUpInfo>
 

@@ -30,7 +30,7 @@ export const ModalButton = styled.button`
     font-weight: lighter;
     padding: .5em;
     cursor: pointer;
-    background-color: dodgerblue;
+    background-color: ${props => props.theme.secondaryColor};
     color: white;
     border: unset;
     border-radius: 5px;

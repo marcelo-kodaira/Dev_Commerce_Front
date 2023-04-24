@@ -10,8 +10,6 @@ interface SearchData{
     name: string
 }
 
-
-
 const SearchFilter = () =>{
     const {token} = useAuth()
     const { searchProduct } = useProducts()

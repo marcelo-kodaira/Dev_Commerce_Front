@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-
-
 export const IconDiv = styled.div`
     color: ${props => props.color};
 `

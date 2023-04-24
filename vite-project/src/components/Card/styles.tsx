@@ -59,7 +59,7 @@ export const DetailsButton = styled.button`
     text-transform: uppercase;
     font-weight: 700;
     font-size: .75rem;
-    background-color: rgb(33 150 243);
+    background-color: ${props => props.theme.secondaryColor};
     border-radius: 0.5rem;
     text-shadow: 0px 4px 18px #2c3442;
 

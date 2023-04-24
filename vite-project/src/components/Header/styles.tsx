@@ -38,7 +38,7 @@ export const HeaderButtons = styled.div`
   `
 
 export const LinkMyProducts = styled(Link)`
-  background-color: dodgerblue;
+  background-color: ${props => props.theme.secondaryColor};
   text-decoration: none;
   border-radius: 5px;
   cursor: pointer;
@@ -51,7 +51,7 @@ export const LinkMyProducts = styled(Link)`
 `
 
 export const LinkHome = styled(LinkMyProducts)`
-  background: tomato;
+  background-color: ${props => props.theme.primaryColor};
 `
 
 export const HeaderProfile = styled.button<{ openMenu: boolean }>`

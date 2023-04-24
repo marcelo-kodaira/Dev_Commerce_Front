@@ -7,12 +7,6 @@ import MyProductsList from './MyProductsList'
 import MyFirstProduct from './MyFirstProduct'
 import ModalCreateProduct from '../../components/Modal/ModalCreateProduct'
 
-interface Product{
-  id: string,
-  name: string,
-  price: number,
-  description: string,
-}
 
 const MyProducts = () => {
 
@@ -22,8 +16,6 @@ const MyProducts = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  const[selectedProduct, setSelectedProduct] = useState<Product>({} as Product)
 
 
   useEffect(() =>{

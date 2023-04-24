@@ -16,7 +16,7 @@ export const StyledInput = styled(Input)`
 
 export const SearchButton = styled.button`
 
-  background-color: #4A90E2;
+background-color: ${props => props.theme.secondaryColor};;
   color: white;
   font-size: 1.3rem;
   width: 60px;
@@ -25,7 +25,7 @@ export const SearchButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #2962A3;
+    filter: brightness(1.2);
   }
 
   @media screen and (max-width: 768px) {

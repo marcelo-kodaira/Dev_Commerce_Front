@@ -30,20 +30,20 @@ export const Blur= styled.div`
 `
 const bgAnimation1 = keyframes`
   from {
-    background-color: #0c8494;
+    background-color: dodgerblue;
   }
   to {
     
-    background-color: #ff5722;
+    background-color: tomato;
   }
 `;
 
 const bgAnimation2 = keyframes`
   from {
-    background-color: #ff5722;
+    background-color: tomato;
   }
   to {
-    background-color: #0c8494;
+    background-color: dodgerblue;
   }
 `;
 
@@ -61,7 +61,7 @@ export const Circle = styled.div`
     background-color: ${props => {
     switch (props.color) {
       case 'orange':
-        return '#ff5722';
+        return 'tomato';
       case 'blue':
         return 'dodgerblue';
     }

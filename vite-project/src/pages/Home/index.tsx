@@ -25,8 +25,6 @@ const Home = () =>{
         return <NotFound  productNotFound={productNotFound}/>
     }
 
-    
-
     return(
         <>
         <Header/>
