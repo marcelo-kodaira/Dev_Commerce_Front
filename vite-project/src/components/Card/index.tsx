@@ -40,7 +40,9 @@ const Card = ({product:product}:CardProps) =>{
     
     return(
             <StyledCard>
+                {Object.keys(selectedProduct).length !== 0 &&
                 <ModalProductDetails open={open} handleClose={handleClose} product={selectedProduct} />
+                }
                 <CardContent>
                     <CardTitle>{product.name}</CardTitle>
                     <CardPrice>R${product.price.toFixed(2).replace(".",",")}</CardPrice>

@@ -18,8 +18,8 @@ interface ModalProductDetailsProps {
 }
 
 const ModalProductDetails = ({ open, handleClose, product}: ModalProductDetailsProps) =>{
+
     return (
-      
         <Modal
           open={open}
           onClose={handleClose}
