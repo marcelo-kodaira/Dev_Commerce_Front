@@ -75,10 +75,10 @@ const ModalEditUser = ({open,handleClose}:ModalEditUserProps) => {
 
             <Input label='Email' error={errors.email} {...register('email')} defaultValue={user.email} />
 
-            <Input label='Senha' error={errors.password} {...register('password')} placeholder='***********' />
+            <Input label='Senha'type='password' error={errors.password} {...register('password')} placeholder='***********' />
             <span></span>
 
-            <Input label='Confirmar Senha' error={errors.confirmPassword} {...register('confirmPassword')} placeholder='***********' />
+            <Input label='Confirmar Senha' type='password' error={errors.confirmPassword} {...register('confirmPassword')} placeholder='***********' />
 
           </InputContainer>
 

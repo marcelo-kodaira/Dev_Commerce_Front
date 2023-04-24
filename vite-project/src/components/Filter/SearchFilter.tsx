@@ -26,7 +26,7 @@ const SearchFilter = () =>{
             <SearchBoxContainer>
                 <StyledFlex>
                     <SearchForm onSubmit={handleSubmit(handleSearch)}>
-                        <StyledInput placeholder="Digite o nome do produto..."   {...register("name")}/>
+                        <StyledInput id="search_product" placeholder="Digite o nome do produto..."   {...register("name")}/>
 
                         <SearchButton>
                             <FaSearch color="white"/>
