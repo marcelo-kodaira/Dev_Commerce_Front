@@ -16,21 +16,21 @@ interface ContactListProps{
 
 const howMany = Array.from(Array(7).keys())
 
-const ProductList = ({loading,products}:ContactListProps) =>(
-    <>
-                <>
-                {
-                    loading? (
-                    howMany.map((num) =>(
-                        <Skeleton key={num} variant="rectangular" width={260} height={300}>
-                            
-                        </Skeleton>
-                    ))
-                    ):
-                    products.map(product => <Card key={product.id} product={product}/>)
-                }
-                </>
-    </>
-)
+const ProductList = ({loading,products}:ContactListProps) =>{
+    return(
+        <>
+        {
+            loading? (
+            howMany.map((num) =>(
+                <Skeleton key={num} variant="rectangular" width={260} height={300}>
+                    
+                </Skeleton>
+            ))
+            ):
+            products.map(product => <Card key={product.id} product={product}/>)
+        }
+        </>
+    )
+}
 
 export default ProductList

@@ -1,5 +1,6 @@
 import Modal from '@mui/material/Modal';
 import { StyledContainer, InfoTitle, InfoContainer, Price, AnnouncerInfo, ProductDescription } from './styles';
+import { useParams } from 'react-router-dom';
 
 
 interface SelectedProduct{
@@ -20,7 +21,6 @@ interface ModalProductDetailsProps {
 }
 
 const ModalProductDetails = ({ open, handleClose, product}: ModalProductDetailsProps) =>{
-
     return (
         <div>
       
