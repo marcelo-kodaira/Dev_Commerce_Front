@@ -1,5 +1,10 @@
 import Modal from '@mui/material/Modal';
 import { StyledContainer, InfoTitle, InfoContainer, Price, AnnouncerInfo, ProductDescription } from './styles';
+import { useHistory, useParams, RouteComponentProps } from 'react-router-dom';
+import { useProducts } from '../../../contexts/ProductsContext';
+import { History } from '@mui/icons-material';
+import { useEffect, useState } from 'react';
+import { useAuth } from '../../../contexts/AuthContext';
 
 interface SelectedProduct{
   name: string
@@ -11,14 +16,32 @@ interface SelectedProduct{
   }
 }
 
-interface ModalProductDetailsProps {
-    open: boolean
-    handleClose: () => void
-    product: SelectedProduct
+
+type ProductParams = {
+  id: string;
 }
 
-const ModalProductDetails = ({ open, handleClose, product}: ModalProductDetailsProps) =>{
+const ModalProductDetails = () =>{
+  const {id} = useParams<ProductParams>()
+  const {token} = useAuth()
+  const {product,loadProductId} = useProducts()
+  const history = useHistory()
+  const [open, setOpen] = useState(true);
+  const [loading,setLoading] = useState(true)
 
+    useEffect(() =>{
+      loadProductId(id,token)
+      .finally(() => setLoading(false))
+    },[id])
+
+    console.log('o')
+
+
+    const handleClose = () => {
+      history.push('/')
+      setOpen(false)
+    }
+    
     return (
         <Modal
           open={open}
@@ -27,19 +50,31 @@ const ModalProductDetails = ({ open, handleClose, product}: ModalProductDetailsP
           aria-describedby="modal-modal-description"
         >
           <StyledContainer>
-            <InfoTitle id="modal-modal-title">
-              {product.name}
-            </InfoTitle>
-            <InfoContainer>
-            <ProductDescription>
-              {product.description}
-            </ProductDescription>
-            <AnnouncerInfo>
+          {
+  loading ? (
+    <p>Carregando...</p>
+  ) : (
+    product ? (
+      <>
+        <InfoTitle id="modal-modal-title">
+          {product.name}
+        </InfoTitle>
+        <InfoContainer>
+          <ProductDescription>
+            {product.description}
+          </ProductDescription>
+          <AnnouncerInfo>
             <p>Anunciante: {product.user.name}</p>
             <p>Contato: {product.user.email}</p>
-            </AnnouncerInfo>
-            <Price>R$ {product.price.toFixed(2).replace(".",",")}</Price> 
-            </InfoContainer>
+          </AnnouncerInfo>
+          <Price>R$ {product.price.toFixed(2).replace(".",",")}</Price> 
+        </InfoContainer>
+      </>
+    ) : (
+      <p>Produto não encontrado.</p>
+    )
+  )
+}
           </StyledContainer>
         </Modal>
     )
