@@ -44,7 +44,7 @@ const DropdownMenu = ({  handleOpen, openMenu,setOpenMenu }:DropdownMenuProps) =
             if (result.isConfirmed) {
               MySwal.fire(
                 'Deletado!',
-                'O seu produto foi deletado.',
+                'A sua conta foi deletada.',
                 'success'
               )
               deleteUser(user.id,token);

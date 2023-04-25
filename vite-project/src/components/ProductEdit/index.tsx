@@ -41,12 +41,12 @@ const ProductEdit = ({product}:CardProps) => {
             confirmButtonText: 'Deletar'
           }).then((result) => {
             if (result.isConfirmed) {
+            deleteProduct(product.id,token)
               MySwal.fire(
                 'Deletado!',
                 'O seu produto foi deletado.',
                 'success'
               )
-              deleteProduct(product.id,token)
             }
           })
         }

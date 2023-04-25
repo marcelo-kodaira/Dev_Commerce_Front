@@ -9,6 +9,8 @@ import { editProductSchema } from '../../../Schemas/editProduct.schema';
 import { toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {TbCurrencyReal} from "react-icons/tb"
+import { useState } from 'react';
+import { SpinnerDotted } from 'spinners-react';
 
 interface Product {
     id: string,
@@ -31,6 +33,7 @@ const ModalEditProduct = ({open,handleClose,product}:ModalEditProductProps) => {
   })
 
   const {token} = useAuth()
+  const [loading, setLoading] = useState(false)
   const {updateProduct} = useProducts()
 
   
@@ -39,9 +42,10 @@ const ModalEditProduct = ({open,handleClose,product}:ModalEditProductProps) => {
       handleClose()
       return
     }
-    
+    setLoading(true)
     updateProduct(data,product.id, token)
     .then(_ => {
+      setLoading(false)
       handleClose()
       toast.success('Produto alterado!')
     })
@@ -65,7 +69,7 @@ const ModalEditProduct = ({open,handleClose,product}:ModalEditProductProps) => {
             <Input label='Preço' error={errors.price} icon={TbCurrencyReal} {...register('price')} defaultValue={product.price.toFixed(2)} />
           </InputContainer>
 
-          <ModalButton type='submit'>Adicionar produto</ModalButton>
+          <ModalButton type='submit' disabled={loading}>{loading?<SpinnerDotted color="white" size={"30px"}/>: 'Alterar produto'}</ModalButton>
 
         </StyledForm>
       </Modal>

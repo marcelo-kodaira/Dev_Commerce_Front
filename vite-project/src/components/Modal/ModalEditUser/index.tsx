@@ -7,6 +7,8 @@ import { ModalButton , InputContainer, ModalTitle, StyledForm} from '../ModalSty
 import { toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { editUserSchema } from '../../../Schemas/editUser.schema';
+import { SpinnerDotted } from 'spinners-react';
+import { useState } from 'react';
 
 interface User {
     name: string,
@@ -27,17 +29,20 @@ const ModalEditUser = ({open,handleClose}:ModalEditUserProps) => {
   })
 
   const {token,user,updateUser} = useAuth()
+  const [loading, setLoading] = useState(false)
 
   
   const handleEditProduct = (data:User) => {
 
     const {confirmPassword,...rest} = data
     
+    setLoading(true)
     updateUser(rest,user.id, token)
     .then(_ => {
+      setLoading(false)
       handleClose()
       toast.success('Dados alterados!')
-    })
+    }).catch(_ => setLoading(false))
 
     if(user.name !== data.name){
       user.name = data.name
@@ -74,7 +79,7 @@ const ModalEditUser = ({open,handleClose}:ModalEditUserProps) => {
 
           </InputContainer>
 
-          <ModalButton type='submit'>Salvar alterações</ModalButton>
+          <ModalButton type='submit' disabled={loading}>{loading?<SpinnerDotted color="white" size={"30px"}/>: 'Alterar dados'}</ModalButton>
 
         </StyledForm>
       </Modal>

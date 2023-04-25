@@ -9,6 +9,8 @@ import { ModalButton, InputContainer, ModalTitle, StyledForm } from '../ModalSty
 import { toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {TbCurrencyReal} from "react-icons/tb"
+import { useState } from 'react';
+import { SpinnerDotted } from 'spinners-react';
 
 interface Product {
     id: String,
@@ -29,17 +31,19 @@ const ModalCreateProduct = ({open,handleClose}:ModalCreateProductProps) => {
   })
 
   const {token} = useAuth()
+  const [loading, setLoading] = useState(false)
   const {createProduct} = useProducts()
 
 
   const handleCreateProduct = (data:Product) =>{
-
+    setLoading(true)
     createProduct(data,token)
     .then(_ => {
+      setLoading(false)
       handleClose()
       toast.success('Produto cadastrado!')
     })
-    .catch(err => toast.error(err))
+    .catch(err => {toast.error(err); setLoading(false)})
   }
 
   return (
@@ -61,7 +65,7 @@ const ModalCreateProduct = ({open,handleClose}:ModalCreateProductProps) => {
             <Input label='Preço' error={errors.price} {...register('price')} icon={TbCurrencyReal} placeholder='Preço do produto' />
           </InputContainer>
 
-          <ModalButton type='submit'>Cadastrar produto</ModalButton>
+          <ModalButton type='submit' disabled={loading}>{loading?<SpinnerDotted color="white" size={"30px"}/>: 'Cadastrar produto'}</ModalButton>
 
         </StyledForm>
       </Modal>

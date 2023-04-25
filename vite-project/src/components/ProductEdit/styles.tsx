@@ -50,7 +50,7 @@ export const ProductContainer = styled.div`
 
     div:nth-child(3){
         display: flex;
-        min-width: 80px;
+        min-width: 100px;
         flex: 1 0 8%;
         justify-content: space-around;
 

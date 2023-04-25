@@ -28,7 +28,7 @@ const SignInForm = ({handleSignIn, errors, register, loading}: SignUpFormProps) 
       <Input label="Senha"  type="password" signUp={false} icon={FaLock} placeholder="Digite sua senha" error={errors.password} {...register("password")}/>
       </div>
 
-      <SignInButton type="submit">{loading? <SpinnerDotted color="white" size={"30px"}/> : 'Login'}</SignInButton>
+      <SignInButton type="submit" disabled={loading}>{loading? <SpinnerDotted color="white" size={"30px"}/> : 'Login'}</SignInButton>
 
       <p>Não tem uma conta? <Link to="/register">Crie sua conta</Link></p>
 

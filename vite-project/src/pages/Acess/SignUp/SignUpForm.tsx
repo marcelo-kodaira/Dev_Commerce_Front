@@ -35,7 +35,7 @@ const SignUpForm = ({handleSignUp, errors, register, loading}: SignUpFormProps) 
       </div>
 
 
-      <SignUpButton type="submit">{loading? <SpinnerDotted color="white" size={"30px"}/> : 'Cadastrar'}</SignUpButton>
+      <SignUpButton type="submit" disabled={loading}>{loading? <SpinnerDotted color="white" size={"30px"}/> : 'Cadastrar'}</SignUpButton>
 
       <p>Já tem uma conta? <Link to="/">Faça login</Link></p>
 
