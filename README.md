@@ -1,7 +1,7 @@
 # SXB Front End
 
 ## Descrição
-Aplicação web voltada para vendas, utilizando React e Typescript permintindo ao usuário adicionar, modificar e deletar produtos.
+Aplicação web voltada para vendas, utilizando React e Typescript permintindo ao usuário adicionar, listar, modificar e deletar produtos.
 
 ## Tecnologias
 Este sistema foi desenvolvido em React utilizando as seguintes tecnologias:
