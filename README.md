@@ -8,6 +8,7 @@ Este sistema foi desenvolvido em React utilizando as seguintes tecnologias:
 
 #Bibliotecas
 - Styled Components
+- Material UI
 - React Hook Form
 - React Icons
 - YUP
