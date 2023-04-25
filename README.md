@@ -20,7 +20,6 @@ Este sistema foi desenvolvido em React utilizando as seguintes tecnologias:
 # Deploy
 - Vercel
 https://sxb-ten.vercel.app/register
-obs: Devido a limitações do plano grátis do Railway o Back end pode estar indisponível em determinadas datas.
 
 # Backend da aplicação
 
