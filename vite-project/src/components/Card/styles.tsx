@@ -21,6 +21,11 @@ export const CardContent = styled.div`
     padding: 5px;
 `
 
+
+export const Loading = styled.div`
+    
+`
+
 export const CardTitle = styled.div`
     font-weight: 800;
     text-transform: uppercase;
