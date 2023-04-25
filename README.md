@@ -6,7 +6,7 @@ Aplicação web voltada para vendas, utilizando React e Typescript permintindo a
 ## Tecnologias
 Este sistema foi desenvolvido em React utilizando as seguintes tecnologias:
 
-# Bibliotecas
+## Bibliotecas
 - Styled Components
 - Material UI
 - React Hook Form
