@@ -65,9 +65,9 @@ const ModalEditUser = ({open,handleClose}:ModalEditUserProps) => {
           <InputContainer id="modal-modal-description">
             <Input label='Nome' error={errors.name} {...register('name')} defaultValue={user.name} />
 
-            <Input label='Email' error={errors.email} {...register('email')} defaultValue={user.email} />
+            <Input label='Email'type='email' error={errors.email} {...register('email')} defaultValue={user.email} />
 
-            <Input label='Senha'type='password' error={errors.password} {...register('password')} placeholder='***********' />
+            <Input label='Senha' type='password' error={errors.password} {...register('password')} placeholder='***********' />
             <span></span>
 
             <Input label='Confirmar Senha' type='password' error={errors.confirmPassword} {...register('confirmPassword')} placeholder='***********' />

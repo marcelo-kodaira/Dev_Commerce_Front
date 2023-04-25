@@ -23,7 +23,7 @@ const SignInForm = ({handleSignIn, errors, register, loading}: SignUpFormProps) 
     <SignUpForms onSubmit={handleSignIn}>
 
       <div>
-      <Input label="Email"  type="tel" signUp={false} icon={FaMailBulk} placeholder="Digite seu email" error={errors.email} {...register("email")}/>
+      <Input label="Email"  type="text" signUp={false} icon={FaMailBulk} placeholder="Digite seu email" error={errors.email} {...register("email")}/>
 
       <Input label="Senha"  type="password" signUp={false} icon={FaLock} placeholder="Digite sua senha" error={errors.password} {...register("password")}/>
       </div>
