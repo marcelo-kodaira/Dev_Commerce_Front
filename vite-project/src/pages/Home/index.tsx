@@ -8,16 +8,25 @@ import Header from "../../components/Header"
 import SearchFilter from "../../components/Filter/SearchFilter"
 import { HomeContainer, ListContainer } from "./styles"
 import Filters from "./Filters"
+import { useLocation } from "react-router-dom"
+
+interface LocationState {
+    isModalRoute: boolean;
+    fromModal?: boolean;
+  }
 
 const Home = () =>{
     
-    const [loading,setLoading] = useState(true)
+    const [loading,setLoading] = useState(false)
     const {token} = useAuth()
     const {products, loadProducts, notFound, productNotFound} = useProducts()
 
     useEffect(() =>{
-        loadProducts(token)
-        .then(_ => setLoading(false))
+        if (!products.length) {
+            setLoading(true)
+            loadProducts(token)
+            .then(_ => setLoading(false))
+        }
     },[])
 
 

@@ -52,7 +52,7 @@ const SignUp = () =>{
               })
         })
         .catch(err => {
-            setErro(err?.response?.data?.message)
+            setErro(err.response?.data?.message)
             setLoading(false)
         })
     }
