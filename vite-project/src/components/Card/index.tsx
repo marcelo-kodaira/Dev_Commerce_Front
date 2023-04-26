@@ -1,8 +1,4 @@
-import { useAuth } from "../../contexts/AuthContext"
 import {CardContent, CardDescription, CardPrice, CardTitle, DetailsButton, StyledCard } from "./styles"
-import { useProducts } from "../../contexts/ProductsContext"
-import { useState } from "react"
-import ModalProductDetails from "../Modal/ModalDetails"
 import { useHistory, useParams } from "react-router-dom"
 
 
@@ -13,9 +9,6 @@ interface Product{
     description: string
 }
 
-interface RouteParams {
-    id: string;
-  }
 
 interface CardProps{
     product: Product

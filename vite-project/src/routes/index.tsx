@@ -13,14 +13,18 @@ const Routes = () =>{
   const {token} = useAuth()
   
   return(
+    <>
   <Switch>
     <Route exact path="/" component={Login}/>
     <Route path="/register" component={SignUp}/>
-    <Route path="/home" component={Home} isPrivate/>
-    <ModalRoute path="/home/:id" component={ModalProductDetails}/>
+    <Route  path="/home" component={Home} isPrivate/>
     <Route path="/myproducts" component={MyProducts} isPrivate/>
     <Route component={NotFound} isPrivate={!!token}/>
   </Switch>
+  <Switch>
+    <Route path="/home/:id" component={ModalProductDetails} isPrivate/>
+  </Switch>
+  </>
 
 )
 }

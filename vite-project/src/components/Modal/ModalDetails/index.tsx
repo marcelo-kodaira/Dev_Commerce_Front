@@ -34,8 +34,6 @@ const ModalProductDetails = () =>{
       .finally(() => setLoading(false))
     },[id])
 
-    console.log('o')
-
 
     const handleClose = () => {
       history.push('/')
