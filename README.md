@@ -1,4 +1,4 @@
-# SXB Front End
+# Dev Commerce Front End
 
 ## Descrição
 Aplicação web voltada para vendas, utilizando React e Typescript permintindo ao usuário adicionar, listar, modificar e deletar produtos.
